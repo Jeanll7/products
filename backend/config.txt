@@ -1,0 +1,8 @@
+yarn prisma migrate dev 
+   
+name table = create_product
+
+npm i cors
+
+
+yarn prisma format
