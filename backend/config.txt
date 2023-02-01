@@ -4,5 +4,13 @@ name table = create_product
 
 npm i cors
 
+npx prisma studio
 
 yarn prisma format
+ 
+
+"text": [
+   tempo que parei o video 51:27
+ ]
+
+
