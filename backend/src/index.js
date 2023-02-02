@@ -54,7 +54,7 @@ server.post("/produto", async (req, res) => {
   }
 });
 
-async function isConsultarProduto(preco) {
+async function consultarProduto(codigo) {
   return await prisma.produto.findUnique({
     where: {
       codigo,
@@ -65,11 +65,11 @@ async function isConsultarProduto(preco) {
 server.delete("/produto/:codigo", async (req, res) => {
   const existeCodigo = await prisma.produto.findUnique({
     where: {
-      codigo: req.params.codigo,
+      codigo,
     },
   });
 
-  if (existeCodigo) {
+  if (consultarProduto()) {
     const produto = await prisma.produto.delete({
       where: {
         codigo: req.params.codigo,
