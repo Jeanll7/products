@@ -34,10 +34,26 @@ server.get("/produto/:codigo", async (req, res) => {
       codigo,
     },
   });
-  return res.json(produto);
+
+  // if (produto) {
+  //   return res.json(produto);
+  // } else {
+  //   return res.status(500).json("produto não encontrado");
+  // }
+  return produto
+    ? res.json(produto)
+    : res.status(500).json("produto não encontrado");
 });
 
-server.post("/produto");
+server.post("/produto", async (req, res) => {
+  const produto = req.body;
+
+  const produtoPrisma = await prisma.produto.create({
+    data: produto,
+  });
+
+  return res.json(produtoPrisma); // Cadastrar novo registro no banco de dados
+});
 
 server.listen(4003, () => {
   console.log("Server up!!");
