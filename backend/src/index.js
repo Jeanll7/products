@@ -37,6 +37,8 @@ server.get("/produto/:codigo", async (req, res) => {
   return res.json(produto);
 });
 
+server.post("/produto");
+
 server.listen(4003, () => {
   console.log("Server up!!");
 });
