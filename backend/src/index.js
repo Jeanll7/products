@@ -12,6 +12,15 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+// function
+async function consultarProduto(codigo) {
+  return await prisma.produto.findUnique({
+    where: {
+      codigo,
+    },
+  });
+}
+
 // Get
 server.get("/produto", async (req, res) => {
   const produtos = await prisma.produto.findMany();
@@ -20,31 +29,15 @@ server.get("/produto", async (req, res) => {
 
 // Get
 server.get("/produto/:codigo", async (req, res) => {
-  const { codigo } = req.params;
-  const produto = await prisma.produto.findUnique({
-    where: {
-      codigo,
-    },
-  });
+  const produto = await consultarProduto(req.params.codigo);
 
-  // if (produto) {
-  //   return res.json(produto);
-  // } else {
-  //   return res.status(500).json("produto não encontrado");
-  // }
   return produto
     ? res.json(produto)
     : res.status(500).json("produto não encontrado");
 });
 
 server.post("/produto", async (req, res) => {
-  const existeCodigo = await prisma.produto.findUnique({
-    where: {
-      codigo: req.body.codigo,
-    },
-  });
-
-  if (existeCodigo) {
+  if (consultarProduto(req.body.codigo)) {
     res.status(500).json("produto já cadastrado");
   } else {
     const produto = await prisma.produto.create({
@@ -54,22 +47,8 @@ server.post("/produto", async (req, res) => {
   }
 });
 
-async function consultarProduto(codigo) {
-  return await prisma.produto.findUnique({
-    where: {
-      codigo,
-    },
-  });
-}
-
 server.delete("/produto/:codigo", async (req, res) => {
-  const existeCodigo = await prisma.produto.findUnique({
-    where: {
-      codigo,
-    },
-  });
-
-  if (consultarProduto()) {
+  if (consultarProduto(req.params.codigo)) {
     const produto = await prisma.produto.delete({
       where: {
         codigo: req.params.codigo,
