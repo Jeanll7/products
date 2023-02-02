@@ -13,8 +13,8 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // function
-async function consultarProduto(codigo) {
-  return await prisma.produto.findUnique({
+function consultarProduto(codigo) {
+  return prisma.produto.findUnique({
     where: {
       codigo,
     },
@@ -37,7 +37,7 @@ server.get("/produto/:codigo", async (req, res) => {
 });
 
 server.post("/produto", async (req, res) => {
-  if (consultarProduto(req.body.codigo)) {
+  if (await consultarProduto(req.body.codigo)) {
     res.status(500).json("produto já cadastrado");
   } else {
     const produto = await prisma.produto.create({
@@ -48,15 +48,29 @@ server.post("/produto", async (req, res) => {
 });
 
 server.delete("/produto/:codigo", async (req, res) => {
-  if (consultarProduto(req.params.codigo)) {
+  if (await consultarProduto(req.params.codigo)) {
     const produto = await prisma.produto.delete({
       where: {
         codigo: req.params.codigo,
       },
     });
-    res.json(produto);
+    return res.json(produto);
   } else {
-    res.status(500).json("produto não encontrado");
+    return res.status(500).json("produto não encontrado");
+  }
+});
+
+server.put("/produto", async (req, res) => {
+  if (await consultarProduto(req.body.codigo)) {
+    const produto = await prisma.produto.update({
+      data: req.body,
+      where: {
+        codigo: req.body.codigo,
+      },
+    });
+    return res.json(produto);
+  } else {
+    return res.status(500).json("produto não encontrado");
   }
 });
 
