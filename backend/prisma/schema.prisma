@@ -8,18 +8,11 @@ datasource db {
 }
 
 model Produto {
-  id        Int      @id @default(autoincrement())
-  name      String
-  bar_code  String   @unique
-  price     Decimal
-  create_at DateTime @default(now())
+  id     Int      @id @default(autoincrement())
+  nome   String
+  codigo String   @unique
+  preco  Decimal
+  data   DateTime @default(now())
 
   @@map("products")
 }
-
-// model Category {
-//   id   String @id @default(uuid())
-//   name String
-
-//   @@map("categories")
-// }

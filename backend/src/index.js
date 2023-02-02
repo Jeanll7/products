@@ -20,19 +20,22 @@ const prisma = new PrismaClient();
 //   });
 // }
 
+// Get
 server.get("/produto", async (req, res) => {
-  // const produtos = await prisma.produto.findMany();
-
-  return res.json("produto");
+  const produtos = await prisma.produto.findMany();
+  return res.json(produtos);
 });
 
-// server.get("/produto/:preco", async (req, res) => {
-//   const produto = await consultarPreco(req.params.preco);
-
-//   return produto
-//     ? res.json(produto)
-//     : res.status(500).json("produto não encontrado");
-// });
+// Get
+server.get("/produto/:codigo", async (req, res) => {
+  const { codigo } = req.params;
+  const produto = await prisma.produto.findUnique({
+    where: {
+      codigo,
+    },
+  });
+  return res.json(produto);
+});
 
 server.listen(4003, () => {
   console.log("Server up!!");
