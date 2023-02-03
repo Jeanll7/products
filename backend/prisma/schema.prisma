@@ -14,5 +14,6 @@ model Produto {
   preco  Decimal
   data   DateTime @default(now())
 
+  // data   DateTime @default(now())
   @@map("produtos")
 }

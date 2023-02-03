@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import "./App.css";
-// import api from "./service/api";
+import api from "./service/api";
 
 function App() {
-  const [produtos, setProdutos] = useState([
-    {
-      nome: "mouse",
-      codigo: "2233",
-      preco: "80",
-      data: "2023-02-02T00:01:12.711Z",
-    },
-  ]);
+  const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    // alert("GET");
+    bucarProdutos();
   }, []);
+
+  async function bucarProdutos() {
+    await api.get("/produto").then((response) => {
+      setProdutos(response.data);
+    });
+  }
 
   return (
     <div className="container">
@@ -34,11 +33,11 @@ function App() {
           {produtos.map((p) => {
             return (
               <tr>
-                <td>{}</td>
-                <td>{}</td>
-                <td>{}</td>
-                <td>{}</td>
-                <td>{}</td>
+                <td>{p.id}</td>
+                <td>{p.nome}</td>
+                <td>{p.codigo}</td>
+                <td>${p.preco}</td>
+                <td>{p.data}</td>
               </tr>
             );
           })}
