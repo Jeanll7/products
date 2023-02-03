@@ -24,8 +24,8 @@ function App() {
   async function cadastrarProduto() {
     const produto = {
       nome,
-      codigo: parseInt(),
-      preco: parseInt(),
+      codigo,
+      preco,
     };
 
     await api.post("/produto", produto).then((response) => {
