@@ -10,6 +10,11 @@
     padding-bottom: 10px;
 }
 
+.input {
+    border: 1px solid #ccc !important;
+    background: #cccccc56 !important;
+}
+
 .table {
     border: 1.2rem solid transparent !important;
 }

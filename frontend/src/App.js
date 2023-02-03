@@ -59,6 +59,7 @@ function App() {
       <Navbar className="gap-2 d-row">
         <InputGroup className="mb-3  w-25">
           <Form.Control
+            className="input"
             placeholder="Nome"
             value={nome}
             onChange={(e) => {
@@ -68,6 +69,7 @@ function App() {
         </InputGroup>
         <InputGroup className="mb-3 w-25">
           <Form.Control
+            className="input"
             placeholder="Código"
             type="number"
             value={codigo}
@@ -78,6 +80,7 @@ function App() {
         </InputGroup>
         <InputGroup className="mb-3 w-25">
           <Form.Control
+            className="input"
             placeholder="Preço"
             type="number"
             value={preco}
