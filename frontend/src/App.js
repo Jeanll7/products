@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Table, Form, InputGroup, Row } from "react-bootstrap";
 import "./App.css";
 import api from "./service/api";
 
 function App() {
   const [produtos, setProdutos] = useState([]);
+
+  const [nome, setNome] = useState("");
+  const [codigo, setCodigo] = useState();
+  const [preco, setPreco] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
     bucarProdutos();
@@ -18,7 +23,48 @@ function App() {
 
   return (
     <div className="container">
-      <h3 className="text-center mt-3 mb-2">Prisma</h3>
+      <h1 className="text-center mt-3 mb-3 text-1">Prisma</h1>
+      <Row>
+        <InputGroup className="mb-3  w-25">
+          <Form.Control
+            placeholder="Nome"
+            value={nome}
+            onChange={(e) => {
+              setNome(e.target.value);
+            }}
+          />
+        </InputGroup>
+        <InputGroup className="mb-3 w-25">
+          <Form.Control
+            placeholder="Código"
+            type="number"
+            value={codigo}
+            onChange={(e) => {
+              setCodigo(e.target.value);
+            }}
+          />
+        </InputGroup>
+        <InputGroup className="mb-3 w-25">
+          <Form.Control
+            placeholder="Preço"
+            type="number"
+            value={preco}
+            onChange={(e) => {
+              setPreco(e.target.value);
+            }}
+          />
+        </InputGroup>
+        <InputGroup className="mb-3 w-25">
+          <Form.Control
+            placeholder="Data"
+            type="number"
+            value={data}
+            onChange={(e) => {
+              setData(e.target.value);
+            }}
+          />
+        </InputGroup>
+      </Row>
       <Table striped bordered hover>
         <thead>
           <tr>
