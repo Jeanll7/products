@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Form, InputGroup, Row } from "react-bootstrap";
+import { Table, Form, InputGroup, Row, Button } from "react-bootstrap";
 import "./App.css";
 import api from "./service/api";
 
@@ -9,7 +9,7 @@ function App() {
   const [nome, setNome] = useState("");
   const [codigo, setCodigo] = useState();
   const [preco, setPreco] = useState();
-  const [data, setData] = useState();
+  // const [data, setData] = useState();
 
   useEffect(() => {
     bucarProdutos();
@@ -18,6 +18,19 @@ function App() {
   async function bucarProdutos() {
     await api.get("/produto").then((response) => {
       setProdutos(response.data);
+    });
+  }
+
+  async function cadastrarProduto() {
+    const produto = {
+      nome,
+      codigo: parseInt(),
+      preco: parseInt(),
+    };
+
+    await api.post("/produto", produto).then((response) => {
+      setProdutos([...produtos, response.data]);
+      alert("Produto cadastrado com sucesso!");
     });
   }
 
@@ -54,7 +67,7 @@ function App() {
             }}
           />
         </InputGroup>
-        <InputGroup className="mb-3 w-25">
+        {/* <InputGroup className="mb-3 w-25">
           <Form.Control
             placeholder="Data"
             type="number"
@@ -63,8 +76,11 @@ function App() {
               setData(e.target.value);
             }}
           />
-        </InputGroup>
+        </InputGroup> */}
       </Row>
+      <div className="mb-2">
+        <Button onClick={cadastrarProduto}>Salvar</Button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>
