@@ -16,4 +16,10 @@
 
 .button {
     margin-left: 10px;
+    background: #e61111 !important;
+    border: none !important;
+}
+
+.button:hover {
+    background: #cf0303 !important;
 }
