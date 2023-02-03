@@ -33,12 +33,12 @@ server.get("/produto/:codigo", async (req, res) => {
 
   return produto
     ? res.json(produto)
-    : res.status(500).json("produto não encontrado");
+    : res.status(500).json("Produto não encontrado");
 });
 
 server.post("/produto", async (req, res) => {
   if (await consultarProduto(req.body.codigo)) {
-    res.status(500).json("produto já cadastrado");
+    res.status(500).json("Produto já cadastrado");
   } else {
     const produto = await prisma.produto.create({
       data: req.body,
@@ -56,7 +56,7 @@ server.delete("/produto/:codigo", async (req, res) => {
     });
     return res.json(produto);
   } else {
-    return res.status(500).json("produto não encontrado");
+    return res.status(500).json("Produto não encontrado");
   }
 });
 
@@ -70,7 +70,7 @@ server.put("/produto", async (req, res) => {
     });
     return res.json(produto);
   } else {
-    return res.status(500).json("produto não encontrado");
+    return res.status(500).json("Produto não encontrado");
   }
 });
 

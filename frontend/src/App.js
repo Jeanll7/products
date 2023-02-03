@@ -28,10 +28,29 @@ function App() {
       preco,
     };
 
-    await api.post("/produto", produto).then((response) => {
-      setProdutos([...produtos, response.data]);
-      alert("Produto cadastrado com sucesso!");
+    await api
+      .post("/produto", produto)
+      .then((response) => {
+        setProdutos([...produtos, response.data]);
+        alert("Produto cadastrado com sucesso!");
+        limparForm();
+      })
+      .catch(() => {
+        alert("Produto já cadastrado");
+      });
+  }
+
+  async function excluirProduto(codigo) {
+    await api.delete(`/produto/${codigo}`).then(() => {
+      bucarProdutos();
+      alert("Produto excluido com sucesso!");
     });
+  }
+
+  function limparForm() {
+    setNome("");
+    setCodigo("");
+    setPreco("");
   }
 
   return (
@@ -79,6 +98,7 @@ function App() {
             <th>código</th>
             <th>preço</th>
             <th>data</th>
+            <th>excluir</th>
           </tr>
         </thead>
         <tbody>
@@ -90,6 +110,16 @@ function App() {
                 <td>{p.codigo}</td>
                 <td>R$ {p.preco}</td>
                 <td>{p.data}</td>
+                <td>
+                  <Button
+                    className="button"
+                    onClick={() => {
+                      excluirProduto(p.codigo);
+                    }}
+                  >
+                    X
+                  </Button>
+                </td>
               </tr>
             );
           })}

@@ -10,7 +10,7 @@ yarn prisma format
  
 
 "text": [
-  tempo que parei o video 3:15
+  tempo que parei o video 3:48
 ]
 
 
