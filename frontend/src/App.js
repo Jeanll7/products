@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Form, InputGroup, Row, Button } from "react-bootstrap";
+import { Table, Form, InputGroup, Navbar, Button } from "react-bootstrap";
 import "./App.css";
 import api from "./service/api";
 
@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="container">
       <h1 className="text-center mt-3 mb-3 text-1">Prisma</h1>
-      <Row>
+      <Navbar className="gap-2 d-row">
         <InputGroup className="mb-3  w-25">
           <Form.Control
             placeholder="Nome"
@@ -67,21 +67,11 @@ function App() {
             }}
           />
         </InputGroup>
-        {/* <InputGroup className="mb-3 w-25">
-          <Form.Control
-            placeholder="Data"
-            type="number"
-            value={data}
-            onChange={(e) => {
-              setData(e.target.value);
-            }}
-          />
-        </InputGroup> */}
-      </Row>
-      <div className="mb-2">
-        <Button onClick={cadastrarProduto}>Salvar</Button>
-      </div>
-      <Table striped bordered hover>
+        <div className="mb-3">
+          <Button onClick={cadastrarProduto}>Salvar</Button>
+        </div>
+      </Navbar>
+      <Table className="table" striped hover variant="dark">
         <thead>
           <tr>
             <th>id</th>
@@ -98,7 +88,7 @@ function App() {
                 <td>{p.id}</td>
                 <td>{p.nome}</td>
                 <td>{p.codigo}</td>
-                <td>${p.preco}</td>
+                <td>R$ {p.preco}</td>
                 <td>{p.data}</td>
               </tr>
             );
