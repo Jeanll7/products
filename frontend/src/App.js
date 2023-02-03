@@ -1,32 +1,15 @@
+import { useEffect } from "react";
 import "./App.css";
+import api from "./service/api";
 
 function App() {
+  useEffect(() => {
+    alert("GET");
+  }, []);
+
   return (
     <div className="App">
-      <h1>Prisma</h1>
-      <form className="container">
-        <label>
-          ID:
-          <input type="text" name="name" />
-        </label>
-        <label>
-          Name_produto:
-          <input type="text" name="name" />
-        </label>
-        <label>
-          Código:
-          <input type="text" name="name" />
-        </label>
-        <label>
-          Preço:
-          <input type="text" name="name" />
-        </label>
-        <label>
-          Data:
-          <input type="text" name="name" />
-        </label>
-        {/* <input type="submit" value="Submit" /> */}
-      </form>
+      <h3>Prisma</h3>
     </div>
   );
 }
