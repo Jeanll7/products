@@ -21,8 +21,9 @@
 
 .button {
     margin-left: 10px;
-    background: #e61111 !important;
+    background: #e80808 !important;
     border: none !important;
+    color: #ddd !important;
 }
 
 .button:hover {

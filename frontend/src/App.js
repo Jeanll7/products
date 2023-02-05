@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Table, Form, InputGroup, Navbar, Button } from "react-bootstrap";
+import { FiTrash2 } from "react-icons/fi";
 import "./App.css";
+import moment from "moment";
 import api from "./service/api";
 
 function App() {
@@ -112,7 +114,7 @@ function App() {
                 <td>{p.nome}</td>
                 <td>{p.codigo}</td>
                 <td>R$ {p.preco}</td>
-                <td>{p.data}</td>
+                <td>{moment(p.data).format("DD/MM/YYYY _ h:mm a")}</td>
                 <td>
                   <Button
                     className="button"
@@ -120,7 +122,7 @@ function App() {
                       excluirProduto(p.codigo);
                     }}
                   >
-                    X
+                    <FiTrash2 />
                   </Button>
                 </td>
               </tr>
