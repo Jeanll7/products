@@ -100,7 +100,7 @@ function App() {
             <th>nome_produto</th>
             <th>código</th>
             <th>preço</th>
-            <th>data</th>
+            <th>data_hora</th>
             <th>excluir</th>
           </tr>
         </thead>
