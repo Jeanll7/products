@@ -10,6 +10,10 @@
     padding-bottom: 10px;
 }
 
+.nav {
+    justify-content: center !important;
+}
+
 .input {
     border: 1px solid #ccc !important;
     background: #cccccc56 !important;
@@ -21,7 +25,7 @@
 
 .button {
     margin-left: 10px;
-    background: #e80808 !important;
+    background: #625e5e9c !important;
     border: none !important;
     color: #ddd !important;
 }

@@ -58,7 +58,7 @@ function App() {
   return (
     <div className="container">
       <h1 className="text-center mt-4 mb-3 text-1">Cadastrar Produto</h1>
-      <Navbar className="gap-2 d-row">
+      <Navbar className="nav gap-2 d-row">
         <InputGroup className="mb-3  w-25">
           <Form.Control
             className="input"
